@@ -20,7 +20,7 @@
                     android:src="@drawable/bp_album_1"
                     />
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtView"
                 android:paddingHorizontal="15dp"
                 android:textSize="17sp"
                 android:fontFamily="@font/poppins_regular"

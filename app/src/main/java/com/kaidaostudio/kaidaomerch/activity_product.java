@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -77,6 +78,9 @@ public class activity_product extends AppCompatActivity {
 
     ArrayAdapter<String> lsvAdpt = null;
 
+    String [] productItems = null;
+    int [] imageItems = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,49 +95,58 @@ public class activity_product extends AppCompatActivity {
         String pro_name = intent.getStringExtra("product_name");
 
         artist_name.setText(artist);
-//        product_name.setText(pro_name);
+        product_name.setText(pro_name);
 
-        String [] productItems = null;
-        int [] imageItems = null;
+
 
         if(artist.equals("BLACKPINK")){
             if(pro_name.equals("Album")){
                 productItems = blackpinkItems[0];
+                imageItems = blackpinkItemsImage[0];
             }else if(pro_name.equals("Photo Book")){
                 productItems = blackpinkItems[1];
+                imageItems = blackpinkItemsImage[1];
             }else if(pro_name.equals("Merch")){
                 productItems = blackpinkItems[2];
+                imageItems = blackpinkItemsImage[2];
             }
         }
 
         if(artist.equals("Cherry Bullet")){
             if(pro_name.equals("Album")){
                 productItems = cherryBulletItems[0];
+                imageItems = cherryBulletItemsImage[0];
             }
         }
 
         if(artist.equals("BTS")){
             if(pro_name.equals("Album")){
                 productItems = btsItems[0];
+                imageItems = btsItemsImage[0];
             }else if(pro_name.equals("Photo Book")){
                 productItems = btsItems[1];
+                imageItems = btsItemsImage[1];
             }else if(pro_name.equals("Tiny Tan")){
                 productItems = btsItems[2];
+                imageItems = btsItemsImage[2];
             }
         }
 
         if(artist.equals("ENHYPEN")){
             if(pro_name.equals("Album")){
                 productItems = enhyphenItems[0];
+                imageItems = enhyphenItemsImage[0];
             }else if(pro_name.equals("Merch")){
                 productItems = enhyphenItems[1];
+                imageItems = enhyphenItemsImage[1];
             }else if(pro_name.equals("DVD")){
                 productItems = enhyphenItems[2];
+                imageItems = enhyphenItemsImage[2];
             }
         }
 
-        product_name.setText(productItems[1]);
-
+        MyAdapter ohmyadapter = new MyAdapter();
+        lsv.setAdapter(ohmyadapter);
 
 
     }
@@ -142,7 +155,7 @@ public class activity_product extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 0;
+            return imageItems.length;
         }
 
         @Override
@@ -157,7 +170,14 @@ public class activity_product extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            convertView = getLayoutInflater().inflate(R.layout.kaidao_listview_product_item, parent, false);
+            ImageView imgView = convertView.findViewById(R.id.imgView);
+            TextView txtView = convertView.findViewById(R.id.txtView);
+
+            txtView.setText(productItems[position]);
+            imgView.setImageResource(imageItems[position]);
+
+            return convertView;
         }
     }
 }
