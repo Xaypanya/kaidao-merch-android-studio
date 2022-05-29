@@ -3,6 +3,7 @@ package com.kaidaostudio.kaidaomerch;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
             {"BTS","ENHYPEN"}
     };
 
+
+
+
+
     Spinner spn;
     ListView lsv;
 
@@ -32,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
         spn = findViewById(R.id.spn);
         lsv = findViewById(R.id.lsv);
 
-        spnAdpt = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, groupArtist);
+        spnAdpt = new ArrayAdapter<String>(getApplicationContext(), R.layout.kaidao_spinner_item, groupArtist);
         spn.setAdapter(spnAdpt);
         spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                lsvAdpt = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,artist[position]);
+                lsvAdpt = new ArrayAdapter<String>(getApplicationContext(), R.layout.kaidao_listview_item,artist[position]);
                 lsv.setAdapter(lsvAdpt);
-
-
             }
 
             @Override
@@ -54,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String str = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
+                    Intent intent = new Intent(MainActivity.this, activity_item.class);
+
+                    intent.putExtra("artist_name", str);
+                    startActivity(intent);
             }
         });
 

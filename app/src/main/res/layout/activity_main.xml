@@ -34,16 +34,34 @@
         android:orientation="vertical"
         android:paddingHorizontal="25dp"
         >
-        <Spinner
-            android:id="@+id/spn"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            />
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"
+                android:layout_marginBottom="3dp"
+                android:text="Category:"/>
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/spn"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="25dp"
             android:background="@color/black"/>
         <ListView
             android:id="@+id/lsv"
